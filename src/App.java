@@ -16,18 +16,6 @@ public class App {
         for (int i = 0; i < modules1ere.length; i++) {
             modules1ere[i] = new ModuleInfo(NOMS_MODULES[i]);
         }
-        modules1ere[0] = new ModuleInfo("G300");
-        modules1ere[1] = new ModuleInfo("187");
-        modules1ere[2] = new ModuleInfo("162");
-        modules1ere[3] = new ModuleInfo("123");
-        modules1ere[4] = new ModuleInfo("293");
-        modules1ere[5] = new ModuleInfo("117");
-        modules1ere[6] = new ModuleInfo("164");
-        modules1ere[7] = new ModuleInfo("216");
-        modules1ere[8] = new ModuleInfo("106");
-        modules1ere[9] = new ModuleInfo("231");
-        modules1ere[10] = new ModuleInfo("122");
-        modules1ere[11] = new ModuleInfo("431");
 
         Professeur[] profs = new Professeur[5];
 
@@ -39,6 +27,10 @@ public class App {
 
         //
         // !!!!!!!!!!!!!!!!!! A CONTROLER UMUT !!!!!!!!!!!!!!!!!!!!!!
+
+        // trois manière de faire :
+
+        // 1.
         boolean tousModulesSontCouverts = false;
         do {
             ServiceFormationMaitres.attribuerModules(profs, modules1ere);
@@ -47,12 +39,14 @@ public class App {
             }
         } while (!tousModulesSontCouverts);
 
+        // 2.
         tousModulesSontCouverts = false;
         do {
             ServiceFormationMaitres.attribuerModules(profs, modules1ere);
             tousModulesSontCouverts = ServiceFormationMaitres.tousModulesCouverts(profs, modules1ere);
         } while (!tousModulesSontCouverts);
 
+        // 3.
         do {
             ServiceFormationMaitres.attribuerModules(profs, modules1ere);
         } while (!ServiceFormationMaitres.tousModulesCouverts(profs, modules1ere));
