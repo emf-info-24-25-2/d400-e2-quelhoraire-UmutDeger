@@ -13,7 +13,9 @@ public class App {
         Horaire horaire = new Horaire(); // !!!!!!!!!!!!!!!!!! A CONTROLER UMUT !!!!!!!!!!!!!!!!!!!!!!
 
         ModuleInfo[] modules1ere = new ModuleInfo[12];
-
+        for (int i = 0; i < modules1ere.length; i++) {
+            modules1ere[i] = new ModuleInfo(NOMS_MODULES[i]);
+        }
         modules1ere[0] = new ModuleInfo("G300");
         modules1ere[1] = new ModuleInfo("187");
         modules1ere[2] = new ModuleInfo("162");
@@ -37,14 +39,23 @@ public class App {
 
         //
         // !!!!!!!!!!!!!!!!!! A CONTROLER UMUT !!!!!!!!!!!!!!!!!!!!!!
+        boolean tousModulesSontCouverts = false;
         do {
-            boolean tousModulesSontCouverts = false;
             ServiceFormationMaitres.attribuerModules(profs, modules1ere);
-            ServiceFormationMaitres.tousModulesCouverts(profs, modules1ere);
             if (ServiceFormationMaitres.tousModulesCouverts(profs, modules1ere)) {
                 tousModulesSontCouverts = true;
             }
         } while (!tousModulesSontCouverts);
+
+        tousModulesSontCouverts = false;
+        do {
+            ServiceFormationMaitres.attribuerModules(profs, modules1ere);
+            tousModulesSontCouverts = ServiceFormationMaitres.tousModulesCouverts(profs, modules1ere);
+        } while (!tousModulesSontCouverts);
+
+        do {
+            ServiceFormationMaitres.attribuerModules(profs, modules1ere);
+        } while (!ServiceFormationMaitres.tousModulesCouverts(profs, modules1ere));
 
         System.out.println("L'école a engagé les professeurs suivants");
 

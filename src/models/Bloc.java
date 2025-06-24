@@ -20,7 +20,10 @@ public class Bloc {
     public Bloc(String nom) {
         this.nom = nom;
         this.modules = new ModuleInfo[NBRE_DEMI_JOURS_SEMAINE];
-
+            modules[0] = new ModuleInfo("Matu");
+            modules[1] = new ModuleInfo("Matu");
+            modules[2] = new ModuleInfo("Matu");
+            modules[3] = new ModuleInfo("Matu");
     }
 
     // Méthodes
